@@ -51,7 +51,7 @@
 
         <div style="margin-top: 40px; text-align: center;">
             <a href="{{ url_for('auth.login') }}" class="btn-google" style="display: inline-flex; width: auto; padding: 0 30px;">
-                <span>Voltar ao Login</span>
+                <span>{% if current_user.is_authenticated %}Voltar ao App{% else %}Voltar ao Login{% endif %}</span>
             </a>
         </div>
     </div>
