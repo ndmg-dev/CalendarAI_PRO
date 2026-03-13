@@ -4,7 +4,7 @@ import logging
 from datetime import datetime
 
 from authlib.integrations.flask_client import OAuth
-from flask import redirect, url_for, session, flash, current_app, request
+from flask import redirect, url_for, session, flash, current_app, request, render_template
 from flask_login import login_user, logout_user, login_required, current_user
 
 from app.blueprints.auth import auth_bp
@@ -40,9 +40,6 @@ def on_register(state):
 @auth_bp.route("/login")
 def login():
     """Render login page."""
-    from flask import render_template
-
-    # If already logged in, go to chat (unless we just logged out)
     if current_user.is_authenticated and not request.args.get("logged_out"):
         return redirect(url_for("chat.index"))
     
@@ -52,7 +49,6 @@ def login():
 @auth_bp.route("/privacy")
 def privacy():
     """Render Privacy Policy page."""
-    from flask import render_template
     return render_template("auth/privacy.html")
 
 
