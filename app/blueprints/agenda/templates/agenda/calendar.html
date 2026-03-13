@@ -1,0 +1,62 @@
+{% extends "shell.html" %}
+
+{% block title %}Agenda — {{ app_name }}{% endblock %}
+
+{% block head_extra %}
+<!-- FullCalendar -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/locales/pt-br.global.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="agenda-container">
+    <!-- View toggle -->
+    <div class="agenda-header">
+        <h2 class="agenda-title">
+            <i data-lucide="calendar" style="width:24px;height:24px"></i>
+            Minha Agenda
+        </h2>
+        <div class="view-toggle">
+            <button class="view-btn active" id="btn-calendar-view" data-view="calendar" title="Calendário">
+                <i data-lucide="layout-grid"></i>
+                <span>Calendário</span>
+            </button>
+            <button class="view-btn" id="btn-list-view" data-view="list" title="Lista">
+                <i data-lucide="list"></i>
+                <span>Lista</span>
+            </button>
+        </div>
+
+        {% if current_user.calendar_sync_enabled %}
+        <button class="btn-sync" id="btn-resync" title="Ressincronizar com Google Calendar">
+            <i data-lucide="refresh-cw"></i>
+            <span>Sincronizar</span>
+        </button>
+        {% else %}
+        <form action="{{ url_for('auth.enable_sync') }}" method="POST">
+            <button type="submit" class="btn-sync btn-sync-activate" title="Ativar Google Calendar">
+                <i data-lucide="external-link"></i>
+                <span>Ativar Sync</span>
+            </button>
+        </form>
+        {% endif %}
+    </div>
+
+    <!-- Calendar view -->
+    <div class="agenda-view" id="calendar-view">
+        <div id="fullcalendar" class="glass-panel"></div>
+    </div>
+
+    <!-- List view -->
+    <div class="agenda-view hidden" id="list-view">
+        <div class="events-list glass-panel" id="events-list">
+            <p class="events-list-empty">Carregando eventos...</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts_extra %}
+<script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+{% endblock %}

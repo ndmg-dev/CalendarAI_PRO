@@ -1,0 +1,78 @@
+{% extends "shell.html" %}
+
+{% block title %}Chat — {{ app_name }}{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="chat-layout">
+    <aside class="chat-sidebar" id="chat-sidebar">
+        <div class="sidebar-header">
+            <h3>Histórico</h3>
+            <div class="last-sync-badge" id="last-sync-time" title="Última atualização">
+                <i data-lucide="refresh-cw"></i>
+                <span id="sync-time-text">--:--</span>
+            </div>
+        </div>
+        <div class="sidebar-content" id="sidebar-history">
+            <!-- Loaded via JS -->
+            <div class="history-skeleton">Carregando histórico...</div>
+        </div>
+    </aside>
+
+    <div class="chat-main">
+        <div class="chat-container" id="chat-container">
+            <div class="chat-messages" id="chat-messages">
+                <!-- Welcome message -->
+                <div class="chat-bubble chat-bubble-ai">
+                    <div class="bubble-avatar">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                    <div class="bubble-content">
+                        <p>Olá{% if current_user.display_name %}, <strong>{{ current_user.display_name.split(' ')[0] }}</strong>{% endif %}! 👋</p>
+                        <p>Sou sua assistente de agendamentos. Como posso te ajudar hoje?</p>
+                    </div>
+                </div>
+
+                {% for msg in initial_messages %}
+                <div class="chat-bubble chat-bubble-{% if msg.role == 'assistant' %}ai{% else %}{{ msg.role }}{% endif %}">
+                    <div class="bubble-avatar">
+                        <i data-lucide="{% if msg.role == 'assistant' %}sparkles{% else %}user{% endif %}"></i>
+                    </div>
+                    <div class="bubble-content">
+                        {% if msg.role == 'assistant' %}
+                            {{ msg.content|safe }}
+                        {% else %}
+                            {{ msg.content }}
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="chat-input-area">
+                <form id="chat-form" class="chat-input-pill">
+                    <button type="button" class="chat-record-btn" id="chat-record-btn" title="Gravar Áudio">
+                        <i data-lucide="mic"></i>
+                    </button>
+                    <input type="text"
+                           id="chat-input"
+                           class="chat-input"
+                           placeholder="Digite sua mensagem..."
+                           autocomplete="off"
+                           required>
+                    <button type="submit" class="chat-send-btn" id="chat-send-btn" title="Enviar">
+                        <i data-lucide="send"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts_extra %}
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

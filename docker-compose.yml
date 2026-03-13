@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: calendai-pro
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    volumes:
+      # Mount source for hot-reload in development
+      - ./app:/app/app
+      - ./prompts:/app/prompts
+    restart: unless-stopped
+
+# NOTE: Supabase is hosted externally (Supabase Cloud).
+# The DATABASE_URL in .env points to the hosted PostgreSQL instance.
+# This compose file only containerizes the Flask application.
