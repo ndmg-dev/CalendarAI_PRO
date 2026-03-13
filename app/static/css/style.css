@@ -303,6 +303,22 @@ ul {
     gap: var(--space-sm);
 }
 
+.mobile-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: var(--space-xs);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+}
+
+.mobile-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+}
+
 .brand-icon {
     color: var(--accent);
     width: 24px;
@@ -1088,6 +1104,47 @@ ul {
    RESPONSIVE
    ═══════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+    .mobile-toggle {
+        display: block;
+    }
+
+    .chat-layout {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .chat-sidebar {
+        position: absolute;
+        left: -100%;
+        top: 0;
+        bottom: 0;
+        z-index: 1000;
+        width: 100%;
+        background: rgba(15, 15, 25, 0.98);
+        backdrop-filter: blur(20px);
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-right: none;
+        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .chat-sidebar.active {
+        left: 0;
+    }
+
+    .chat-main {
+        width: 100%;
+    }
+
+    /* Glassmorphism Pill responsiveness */
+    .chat-input-pill {
+        padding: var(--space-xs) var(--space-sm);
+        gap: var(--space-xs);
+    }
+
+    .chat-input {
+        font-size: 14px;
+    }
+
     .shell-nav {
         padding: 0 var(--space-md);
     }
@@ -1113,12 +1170,24 @@ ul {
     }
 
     .agenda-container {
-        padding: var(--space-md);
+        padding: var(--space-sm);
     }
 
     .agenda-header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        gap: var(--space-md);
+    }
+
+    /* Fix table responsiveness for agenda */
+    .calendar-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .calendar-table th, .calendar-table td {
+        min-width: 120px;
+        padding: var(--space-xs);
     }
 }
 

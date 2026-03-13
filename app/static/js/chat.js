@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sidebarHistory = document.getElementById('sidebar-history');
     const syncTimeText = document.getElementById('sync-time-text');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const chatSidebar = document.getElementById('chat-sidebar');
 
     let mediaRecorder;
     let audioChunks = [];
@@ -36,7 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         el.dataset.date = item.date;
                         el.innerHTML = `<i data-lucide="message-square"></i> <span>${item.label}</span>`;
                         
-                        el.addEventListener('click', () => loadDayMessages(item.date, el));
+                        el.addEventListener('click', () => {
+                            loadDayMessages(item.date, el);
+                            // Close sidebar on mobile after selection
+                            if (window.innerWidth <= 768 && chatSidebar) {
+                                chatSidebar.classList.remove('active');
+                            }
+                        });
                         sidebarHistory.appendChild(el);
                     });
                     if (window.lucide) lucide.createIcons();
@@ -78,6 +86,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Initial load
 loadHistory();
+
+// ── Mobile Sidebar Toggle ─────────────────────────────
+if (sidebarToggle && chatSidebar) {
+    sidebarToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        chatSidebar.classList.toggle('active');
+    });
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768 && 
+            chatSidebar.classList.contains('active') && 
+            !chatSidebar.contains(e.target) && 
+            e.target !== sidebarToggle) {
+            chatSidebar.classList.remove('active');
+        }
+    });
+}
 
 // ── Audio Recording ──────────────────────────────────
 if (recordBtn) {
