@@ -1,0 +1,27 @@
+# Git
+.git
+.gitignore
+.github
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local configuration
+.env
+*.swp
+*.bak
+
+# Brain / Artifacts
+brain/
+*.md
+LICENSE
+prompts/
