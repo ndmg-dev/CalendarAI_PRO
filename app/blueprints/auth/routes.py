@@ -52,6 +52,12 @@ def privacy():
     return render_template("auth/privacy.html")
 
 
+@auth_bp.route("/terms")
+def terms():
+    """Render Terms of Use page."""
+    return render_template("auth/terms.html")
+
+
 @auth_bp.route("/google")
 def google_login():
     """Redirect user to Google OAuth consent screen."""

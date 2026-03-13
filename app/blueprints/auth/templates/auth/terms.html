@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Termos de Uso — {{ app_name }}{% endblock %}
+
+{% block body %}
+<div class="login-page">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+
+    <div class="login-card privacy-card" style="max-width: 800px; text-align: left; padding: 40px; margin: 40px auto;">
+        <div class="login-brand" style="margin-bottom: 30px;">
+            <div class="login-icon">
+                <i data-lucide="file-text"></i>
+            </div>
+            <h1 class="login-title">Termos de Uso</h1>
+        </div>
+
+        <div class="privacy-content" style="color: rgba(255, 255, 255, 0.8); line-height: 1.6; font-size: 0.95rem;">
+            <p>Bem-vindo ao <strong>{{ app_name }}</strong>. Ao utilizar nossa plataforma, você concorda com os seguintes termos e condições.</p>
+
+            <h3 style="color: #fff; margin-top: 25px;">1. Aceitação dos Termos</h3>
+            <p>Ao acessar e usar este serviço, você declara ter lido, compreendido e aceitado todos os termos aqui descritos. Este serviço utiliza Inteligência Artificial para gerenciar agendas de forma automatizada.</p>
+
+            <h3 style="color: #fff; margin-top: 25px;">2. Uso do Serviço</h3>
+            <p>Você é responsável por manter a segurança da sua conta e por todas as atividades que ocorrem sob sua credencial. O serviço destina-se ao agendamento e gerenciamento de compromissos pessoais e profissionais.</p>
+            <ul>
+                <li><strong>IA Assistente:</strong> Você compreende que a IA processa suas mensagens para identificar intenções de agendamento.</li>
+                <li><strong>Exatidão:</strong> Embora busquemos precisão total, você deve conferir os agendamentos realizados pela IA no seu Google Calendar.</li>
+            </ul>
+
+            <h3 style="color: #fff; margin-top: 25px;">3. Conexão com Google</h3>
+            <p>O funcionamento pleno do CalendAI PRO depende da sua autorização para que o app interaja com sua conta Google via OAuth. Você pode revogar essa permissão a qualquer momento nas configurações da sua conta Google.</p>
+
+            <h3 style="color: #fff; margin-top: 25px;">4. Limitação de Responsabilidade</h3>
+            <p>O {{ app_name }} não se responsabiliza por compromissos perdidos, erros de fuso horário ou falhas técnicas decorrentes de APIs de terceiros (Google, OpenAI). O serviço é fornecido "como está".</p>
+
+            <h3 style="color: #fff; margin-top: 25px;">5. Modificações</h3>
+            <p>Reservamo-nos o direito de modificar estes termos a qualquer momento. O uso continuado do serviço após alterações constitui aceitação dos novos termos.</p>
+        </div>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <a href="{{ url_for('auth.login') }}" class="btn-google" style="display: inline-flex; width: auto; padding: 0 30px;">
+                <span>Voltar ao Login</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
