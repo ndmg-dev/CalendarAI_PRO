@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Política de Privacidade — {{ app_name }}{% endblock %}
+
+{% block body %}
+<div class="login-page">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+
+    <div class="login-card privacy-card" style="max-width: 800px; text-align: left; padding: 40px; margin: 40px auto;">
+        <div class="login-brand" style="margin-bottom: 30px;">
+            <div class="login-icon">
+                <i data-lucide="shield-check"></i>
+            </div>
+            <h1 class="login-title">Política de Privacidade</h1>
+        </div>
+
+        <div class="privacy-content" style="color: rgba(255, 255, 255, 0.8); line-height: 1.6; font-size: 0.95rem;">
+            <p>Sua privacidade é importante para nós. Esta Política de Privacidade descreve como o <strong>{{ app_name }}</strong> coleta, usa e protege suas informações ao utilizar nossos serviços, especialmente em relação à sua conta Google e calendários.</p>
+
+            <h3 style="color: #fff; margin-top: 25px;">1. Informações que Coletamos</h3>
+            <p>Ao se autenticar via Google OAuth, coletamos as seguintes informações:</p>
+            <ul>
+                <li><strong>Identificação Básica:</strong> Nome, endereço de e-mail e URL da foto do perfil fornecidos pelo Google.</li>
+                <li><strong>Google Calendar:</strong> Se você habilitar a sincronização, acessamos os metadados dos seus calendários e eventos para permitir que nossa IA agende e gerencie seus compromissos.</li>
+                <li><strong>Conteúdo de Chat:</strong> As interações que você tem com o assistente de IA são armazenadas para manter o histórico da sua conversa.</li>
+            </ul>
+
+            <h3 style="color: #fff; margin-top: 25px;">2. Como Usamos Suas Informações</h3>
+            <p>Utilizamos os dados coletados exclusivamente para:</p>
+            <ul>
+                <li>Autenticar seu acesso de forma segura.</li>
+                <li>Habilitar o assistente de IA a criar, ler e atualizar eventos no seu Google Calendar conforme solicitado por você.</li>
+                <li>Personalizar a experiência do usuário.</li>
+                <li>Enviar notificações de lembrete via e-mail (opcional).</li>
+            </ul>
+
+            <h3 style="color: #fff; margin-top: 25px;">3. Compartilhamento de Dados</h3>
+            <p>Não vendemos seus dados para terceiros. O compartilhamento ocorre apenas com:</p>
+            <ul>
+                <li><strong>OpenAI:</strong> O conteúdo das suas solicitações de chat é enviado à OpenAI para processamento da inteligência artificial. Nenhum dado pessoal identificável (como e-mail) é enviado intencionalmente nesta etapa, a menos que conste explicitamente na sua mensagem.</li>
+                <li><strong>Google APIs:</strong> Para realizar a sincronização nativa com seus calendários.</li>
+            </ul>
+
+            <h3 style="color: #fff; margin-top: 25px;">4. Segurança e Retenção</h3>
+            <p>Seus tokens de acesso ao Google são armazenados de forma criptografada em nosso banco de dados. Você pode revogar o acesso do CalendAI PRO à sua conta Google a qualquer momento através das configurações de segurança da sua conta Google.</p>
+
+            <h3 style="color: #fff; margin-top: 25px;">5. Contato</h3>
+            <p>Se você tiver dúvidas sobre esta política, entre em contato através do e-mail de suporte associado ao projeto.</p>
+        </div>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <a href="{{ url_for('auth.login') }}" class="btn-google" style="display: inline-flex; width: auto; padding: 0 30px;">
+                <span>Voltar ao Login</span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

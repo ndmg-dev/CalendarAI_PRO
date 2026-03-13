@@ -49,6 +49,13 @@ def login():
     return render_template("auth/login.html")
 
 
+@auth_bp.route("/privacy")
+def privacy():
+    """Render Privacy Policy page."""
+    from flask import render_template
+    return render_template("auth/privacy.html")
+
+
 @auth_bp.route("/google")
 def google_login():
     """Redirect user to Google OAuth consent screen."""
