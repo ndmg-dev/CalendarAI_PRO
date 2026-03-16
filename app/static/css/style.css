@@ -1177,17 +1177,34 @@ ul {
         flex-direction: column;
         align-items: stretch;
         gap: var(--space-md);
+        text-align: center;
     }
 
-    /* Fix table responsiveness for agenda */
-    .calendar-table-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+    .agenda-title {
+        justify-content: center;
+        font-size: var(--font-size-lg);
     }
 
-    .calendar-table th, .calendar-table td {
-        min-width: 120px;
-        padding: var(--space-xs);
+    /* FullCalendar Mobile Overrides */
+    .fc .fc-toolbar {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .fc-toolbar-title {
+        font-size: 1.2rem !important;
+    }
+
+    .fc .fc-button {
+        padding: 0.4em 0.6em !important;
+        font-size: 0.85rem !important;
+    }
+
+    .fc .fc-toolbar-chunk {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px;
     }
 }
 
