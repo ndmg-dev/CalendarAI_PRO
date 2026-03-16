@@ -31,7 +31,8 @@ def create_app(config_name: str | None = None) -> Flask:
     # Handle HTTPS correctly behind reverse proxies (like Coolify/Traefik)
     if config_name == "production":
         from werkzeug.middleware.proxy_fix import ProxyFix
-        app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+        # Trust X-Forwarded-For, Proto, Host, Port, Prefix
+        app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_port=1, x_prefix=1)
 
     # ── Logging ──────────────────────────────────────────
     logging.basicConfig(

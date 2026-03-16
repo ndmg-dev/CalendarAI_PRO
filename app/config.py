@@ -69,6 +69,7 @@ class ProductionConfig(Config):
 
     DEBUG = False
     SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_SAMESITE = "None"
     PREFERRED_URL_SCHEME = "https"
 
 
