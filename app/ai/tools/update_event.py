@@ -21,9 +21,9 @@ def update_event_tool(
 ) -> str:
     """Atualiza um evento existente na agenda do usuário.
 
-    Use esta ferramenta quando o usuário quiser alterar, modificar, reagendar
-    ou atualizar dados de um compromisso ou evento existente.
-    O event_id deve ser obtido previamente pela ferramenta de listagem.
+    Esta ferramenta EXIGE um `event_id` válido (UUID).
+    Se você não tiver o ID, DEVE usar `listar_eventos` primeiro para encontrá-lo.
+    Use esta ferramenta para alterar horários, títulos ou descrições de eventos existentes.
     """
     from flask_login import current_user
 

@@ -20,10 +20,10 @@ def create_event_tool(
     description: str | None = None,
     timezone: str = "America/Sao_Paulo",
 ) -> str:
-    """Cria um novo evento na agenda do usuário.
+    """Cria um NOVO evento na agenda do usuário.
 
-    Use esta ferramenta quando o usuário quiser agendar, marcar ou criar
-    um novo compromisso, reunião, evento ou lembrete.
+    ATENÇÃO: NÃO use esta ferramenta se o usuário quiser alterar, remarcar ou modificar
+    um evento já existente. Nesses casos, use `atualizar_evento`.
     """
     from flask_login import current_user
 
