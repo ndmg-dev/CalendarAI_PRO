@@ -6,6 +6,7 @@ from zoneinfo import ZoneInfo
 
 from dateutil import parser as dateutil_parser
 
+from app.extensions import db
 from app.repositories.event_repository import EventRepository
 from app.models.event import Event
 from app.models.user import User

@@ -22,6 +22,4 @@ htmlcov/
 
 # Brain / Artifacts
 brain/
-*.md
 LICENSE
-prompts/
