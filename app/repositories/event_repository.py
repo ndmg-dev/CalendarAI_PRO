@@ -59,8 +59,10 @@ class EventRepository:
         )
 
         if start:
-            query = query.filter(Event.start_datetime >= start)
+            # Event ends after or on query start
+            query = query.filter(Event.end_datetime >= start)
         if end:
+            # Event starts before or on query end
             query = query.filter(Event.start_datetime <= end)
         if keyword:
             like_pattern = f"%{keyword}%"

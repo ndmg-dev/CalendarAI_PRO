@@ -41,15 +41,23 @@ def events():
 
         if start_str:
             try:
+                # 1. Try ISO format (from FullCalendar)
                 start_dt = datetime.fromisoformat(start_str.replace("Z", "+00:00"))
             except ValueError:
-                pass
+                # 2. Fallback to flexible parsing
+                start_dt = SchedulingService.parse_datetime_safe(start_str, user_tz)
 
         if end_str:
             try:
                 end_dt = datetime.fromisoformat(end_str.replace("Z", "+00:00"))
             except ValueError:
-                pass
+                end_dt = SchedulingService.parse_datetime_safe(end_str, user_tz)
+
+        # Ensure we are comparing aware datetimes against aware column
+        if start_dt and start_dt.tzinfo is None:
+            start_dt = start_dt.replace(tzinfo=tz)
+        if end_dt and end_dt.tzinfo is None:
+            end_dt = end_dt.replace(tzinfo=tz)
 
         events = SchedulingService.list_events(
             user_id=current_user.id,

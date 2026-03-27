@@ -220,7 +220,13 @@ class SchedulingService:
             reference = datetime.now(tz)
 
         try:
-            parsed = dateutil_parser.parse(date_str, dayfirst=True, default=reference)
+            # First try exact ISO format (e.g., from AI tools)
+            try:
+                parsed = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
+            except ValueError:
+                # Fallback to dateutil for natural language or flexible formats
+                parsed = dateutil_parser.parse(date_str, dayfirst=True, default=reference)
+
             if parsed.tzinfo is None:
                 parsed = parsed.replace(tzinfo=tz)
             return parsed
